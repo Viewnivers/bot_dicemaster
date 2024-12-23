@@ -1,0 +1,30 @@
+{
+  "dependencies": {
+    "@discordjs/opus": "^0.9.0",
+    "@discordjs/voice": "^0.16.0",
+    "avconv": "^3.1.0",
+    "axios": "^1.6.0",
+    "discord-player": "^6.6.0",
+    "discord.js": "^14.15.3",
+    "dotenv": "^16.0.3",
+    "ffmpeg": "^0.0.4",
+    "ffmpeg-static": "^5.1.0",
+    "fs": "^0.0.1-security",
+    "libsodium-wrappers": "^0.7.13",
+    "mp3": "^0.1.0",
+    "mysql": "^2.18.1",
+    "node-cron": "^3.0.3",
+    "node-schedule": "^2.1.1",
+    "opusscript": "^0.0.8",
+    "sodium-native": "^4.0.4",
+    "tweetnacl": "^1.0.3",
+    "twit": "^2.2.11",
+    "ytdl-core": "^4.11.4"
+  },
+  "name": "torneos-del-poder",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

@@ -1,0 +1,14 @@
+const { Events } = require('discord.js');
+client.once('ready', async () => {
+    const guild = client.guilds.cache.get(process.env.GUILD_ID);
+
+    await guild.commands.fetch();
+});
+
+module.exports = {
+	name: Events.ClientReady,
+	once: true,
+	execute(client) {
+		console.log(`Ready! Logged in as ${client.user.tag}`);
+	},
+};

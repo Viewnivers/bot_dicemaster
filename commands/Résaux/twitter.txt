@@ -1,0 +1,41 @@
+const { Client, Intents, MessageEmbed } = require('discord.js');
+const Twit = require('twit');
+
+// Configurations pour Discord et Twitter
+const discordToken = 'MTA3NjA3OTE3NTUzMTc1NzYwOA.GDwqON.JJY8Jj9WwwwyX0xx4F7cjVrzENUIQKvoUt4Dxc';
+const twitterConfig = {
+  consumer_key: 'ANk2mQ4fddxi446JOkyc0VMCJ',
+  consumer_secret: 'WoZxvUtqRPukRRWUMW5weQFDhVEO144r0UdhDMFRAh0AflgNxn',
+  access_token: '1665786190925053952-S2AMnmkQlq8KTnZWOYitEWx4qfmjf6',
+  access_token_secret: '6jdiKEfGTb3rKAukOOUh3MBARr6PlUMTDCQ8l1WGY3OIO',
+};
+
+// Création des intents Discord
+const intents = new Intents();
+intents.add(Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.DIRECT_MESSAGES);
+
+// Création du client Discord avec les intents
+const client = new Client({ 
+  ws: { intents },
+});
+client.login(discordToken);
+
+// Création de l'instance Twit pour l'API Twitter
+const twitter = new Twit(twitterConfig);
+
+// Écoute des tweets
+const stream = twitter.stream('statuses/filter', { track: '@limzopro' });
+
+// Événement lorsqu'un tweet est reçu
+stream.on('tweet', (tweet) => {
+  const channelID = '1113783907188490241'; // Remplacez par l'ID du salon Discord souhaité
+  const channel = client.channels.cache.get(channelID);
+
+  if (channel) {
+    const embed = new MessageEmbed()
+      .setTitle(`Nouveau tweet de ${tweet.user.screen_name}`)
+      .setDescription(tweet.text);
+
+    channel.send({ embeds: [embed] });
+  }
+});
